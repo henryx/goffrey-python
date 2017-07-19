@@ -32,7 +32,7 @@ def init_args():
                       help="Use the specified configuration file")
 
     # Commands
-    sub = args.add_subparsers(description="Commands")
+    sub = args.add_subparsers(description="Commands", dest="command")
     register = sub.add_parser("register", description="Register a network")
     unregister = sub.add_parser("unregister", description="Unregister a network")
     assign = sub.add_parser("assign", description="Associate an address")
