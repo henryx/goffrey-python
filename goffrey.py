@@ -6,6 +6,7 @@
 # License       GPL version 2 (see GPL.txt for details)
 
 import argparse
+import configparser
 
 import sys
 
@@ -65,9 +66,10 @@ def main():
     args = init_args().parse_args(sys.argv[1:])
 
     if not args.cfg:
-        cfg = "goffrey.cfg"  # TODO: check correct location if you are on Windows or on Linux
+        # TODO: check correct location if you are on Windows or on Linux
+        cfg = configparser.ConfigParser.read("goffrey.cfg")
     else:
-        cfg = args.cfg
+        cfg = configparser.ConfigParser.read(args.cfg)
 
     if args.command == "register":
         pass
