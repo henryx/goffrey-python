@@ -1,2 +1,2 @@
-# goffrey-python
+# goffrey
 A simple IPAM
