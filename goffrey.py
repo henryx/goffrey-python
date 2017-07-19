@@ -15,6 +15,11 @@ __version__ = "0.0.0"
 
 
 def init_args():
+    """
+    Argument parser initialization
+    :return: An object that parse arguments passed from command line
+    """
+
     args = argparse.ArgumentParser(description="Goffrey")
 
     # Global arguments
@@ -48,6 +53,11 @@ def init_args():
 
 
 def main():
+    """
+    Main function
+    :return:
+    """
+
     args = init_args().parse_args(sys.argv[1:])
 
     print("Goffrey version {}".format(__version__))
