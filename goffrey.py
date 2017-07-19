@@ -21,6 +21,13 @@ def init_args():
     args.add_argument("-c", "--cfg", metavar="<file>", default="goffrey.cfg",
                       help="Use the specified configuration file")
 
+    # Commands
+    sub = args.add_subparsers(description="Commands")
+    register = sub.add_parser("register", description="Register a network")
+    unregister = sub.add_parser("unregister", description="Unregister a network")
+    assign = sub.add_parser("assign", description="Associate an address")
+    unassign = sub.add_parser("unassign", description="Remove association for address")
+
     return args
 
 
