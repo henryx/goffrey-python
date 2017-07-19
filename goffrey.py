@@ -64,6 +64,11 @@ def main():
 
     args = init_args().parse_args(sys.argv[1:])
 
+    if not args.cfg:
+        cfg = "goffrey.cfg"  # TODO: check correct location if you are on Windows or on Linux
+    else:
+        cfg = args.cfg
+
     if args.command == "register":
         pass
     elif args.command == "register":
