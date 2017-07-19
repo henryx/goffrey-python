@@ -33,6 +33,9 @@ def init_args():
     register.add_argument("-N", "--network", help="Set the network addresses")
     register.add_argument("-M", "--netmask", help="Set the network mask")
 
+    # Unregister
+    unregister.add_argument("-n", "--name", help="Name of the network to unregister")
+
     return args
 
 
