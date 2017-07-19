@@ -28,8 +28,7 @@ def init_args():
     args = argparse.ArgumentParser(description="Goffrey")
 
     # Global arguments
-    args.add_argument("-c", "--cfg", metavar="<file>", default="goffrey.cfg",
-                      help="Use the specified configuration file")
+    args.add_argument("-c", "--cfg", metavar="<file>", help="Use the specified configuration file")
 
     # Commands
     sub = args.add_subparsers(description="Commands", dest="command")
