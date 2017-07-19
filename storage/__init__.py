@@ -3,4 +3,4 @@
 # Description   A simple IPAM
 # License       GPL version 2 (see GPL.txt for details)
 
-__all__ = []
+__all__ = ["database"]

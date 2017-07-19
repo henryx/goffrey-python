@@ -5,4 +5,22 @@
 
 
 class Database(object):
-    pass
+    _conn = None
+
+    @property
+    def conn(self):
+        return self._conn
+
+    def __init__(self, cfg):
+        pass
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        try:
+            if self._conn:
+                self._conn.commit()
+                self._conn.close()
+        except:
+            pass
