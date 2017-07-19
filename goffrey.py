@@ -40,6 +40,10 @@ def init_args():
     assign.add_argument("-n", "--name", help="Name of the network to assign host")
     assign.add_argument("-H", "--host", help="Name of the host to assign IP")
 
+    # Unassign
+    unassign.add_argument("-n", "--name", help="Name of the network to unassign host")
+    unassign.add_argument("-H", "--host", help="Name of the host to unassign IP")
+
     return args
 
 
