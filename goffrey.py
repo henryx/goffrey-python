@@ -36,6 +36,10 @@ def init_args():
     # Unregister
     unregister.add_argument("-n", "--name", help="Name of the network to unregister")
 
+    # Assign
+    assign.add_argument("-n", "--name", help="Name of the network to assign host")
+    assign.add_argument("-H", "--host", help="Name of the host to assign IP")
+
     return args
 
 
