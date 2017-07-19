@@ -21,7 +21,7 @@ def init_args():
 
 
 def main():
-    args = init_args().parse_args(sys.argv)
+    args = init_args().parse_args(sys.argv[1:])
 
     print("Goffrey version {}".format(__version__))
 
