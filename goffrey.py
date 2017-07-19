@@ -26,7 +26,7 @@ def init_args():
     register = sub.add_parser("register", description="Register a network")
     unregister = sub.add_parser("unregister", description="Unregister a network")
     assign = sub.add_parser("assign", description="Associate an address")
-    unassign = sub.add_parser("unassign", description="Remove association for address")
+    remove = sub.add_parser("remove", description="Remove association for address")
 
     # Register
     register.add_argument("-n", "--name", help="Set the name of the network")
@@ -40,9 +40,9 @@ def init_args():
     assign.add_argument("-n", "--name", help="Name of the network to assign host")
     assign.add_argument("-H", "--host", help="Name of the host to assign IP")
 
-    # Unassign
-    unassign.add_argument("-n", "--name", help="Name of the network to unassign host")
-    unassign.add_argument("-H", "--host", help="Name of the host to unassign IP")
+    # Remove
+    remove.add_argument("-n", "--name", help="Name of the network to remove host")
+    remove.add_argument("-H", "--host", help="Name of the host to remove IP")
 
     return args
 
