@@ -28,6 +28,11 @@ def init_args():
     assign = sub.add_parser("assign", description="Associate an address")
     unassign = sub.add_parser("unassign", description="Remove association for address")
 
+    # Register
+    register.add_argument("-n", "--name", help="Set the name of the network")
+    register.add_argument("-N", "--network", help="Set the network addresses")
+    register.add_argument("-M", "--netmask", help="Set the network mask")
+
     return args
 
 
