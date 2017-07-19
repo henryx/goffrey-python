@@ -65,6 +65,15 @@ def main():
 
     args = init_args().parse_args(sys.argv[1:])
 
+    if args.command == "register":
+        pass
+    elif args.command == "register":
+        pass
+    elif args.command == "assign":
+        pass
+    elif args.command == "remove":
+        pass
+
     print("Goffrey version {}".format(__version__))
 
 
