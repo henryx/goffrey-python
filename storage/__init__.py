@@ -36,6 +36,9 @@ class Database(object):
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        self.close()
+
+    def close(self):
         try:
             if self._conn:
                 self._conn.commit() if not self._autocommit else None
