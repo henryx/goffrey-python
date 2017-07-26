@@ -26,4 +26,5 @@ class Register(Operation):
         else:
             raise ValueError("Database engine not supported: {}".format(self._cfg["general"]["database"]))
 
+        db.register(name, network, netmask)
         print("Registered section")
