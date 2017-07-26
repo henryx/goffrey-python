@@ -46,5 +46,5 @@ class Database(object):
         except:
             pass
 
-    def register(self, name, network, netmask):
+    def register(self, name, ipnetwork):
         pass
