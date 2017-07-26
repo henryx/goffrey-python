@@ -4,6 +4,7 @@
 # Project       Goffrey
 # Description   A simple IPAM
 # License       GPL version 2 (see GPL.txt for details)
+from contextlib import closing
 
 _author__ = "Enrico Bianchi"
 __copyright__ = "Copyright 2017, Enrico Bianchi"
@@ -55,4 +56,10 @@ class Database(object):
             pass
 
     def register(self, name, ipnetwork):
-        pass
+        query = ("INSERT INTO sections(section, network, netmask) VALUES ({0}, {0}, {0})".format(self.paramstyle),
+                 "INSERT INTO addresses(section, address) VALUES({0}, {0})".format(self.paramstyle))
+
+        with closing(self.conn.cursor()) as cur:
+            cur.execute(query[0], (name, str(ipnetwork.network_address), str(ipnetwork.netmask)))
+            for ip in ipnetwork.hosts():
+                cur.execute(query[1], (name, str(ip)))
