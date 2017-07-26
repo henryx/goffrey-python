@@ -10,6 +10,8 @@ import argparse
 import configparser
 import sys
 
+from operations import register
+
 __author__ = "Enrico Bianchi"
 __copyright__ = "Copyright 2017, Enrico Bianchi"
 __credits__ = ["Enrico Bianchi", ]
@@ -80,7 +82,8 @@ def main():
         sys.exit(1)
 
     if args.command == "register":
-        pass
+        r = register.Register(args.cfg)
+        r.start(args.name, args.network, args.netmask)
     elif args.command == "register":
         pass
     elif args.command == "assign":
