@@ -82,7 +82,7 @@ def main():
         sys.exit(1)
 
     if args.command == "register":
-        r = register.Register(args.cfg)
+        r = register.Register(cfg)
         r.start(args.name, args.network, args.netmask)
     elif args.command == "register":
         pass
