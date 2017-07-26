@@ -49,3 +49,9 @@ class SQLite(Database):
         with closing(self._conn.cursor()) as cur:
             for table in tables:
                 cur.execute(table)
+
+    def register(self, name, network, netmask):
+        query = "INSERT INTO sections(section, network, netmask) VALUES (?, ?, ?)"
+
+        with closing(self.conn.cursor()) as cur:
+            cur.execute(query, (name, network, netmask))
