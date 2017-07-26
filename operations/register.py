@@ -4,6 +4,8 @@
 # Project       Goffrey
 # Description   A simple IPAM
 # License       GPL version 2 (see GPL.txt for details)
+import ipaddress
+
 import storage.engines
 from operations import Operation
 
@@ -16,6 +18,7 @@ __email__ = "enrico.bianchi@gmail.com"
 __status__ = "Development"
 __version__ = "0.0.0"
 
+
 class Register(Operation):
     def __init__(self, cfg):
         super().__init__(cfg)
@@ -26,5 +29,11 @@ class Register(Operation):
         else:
             raise ValueError("Database engine not supported: {}".format(self._cfg["general"]["database"]))
 
-        db.register(name, network, netmask)
-        print("Registered section")
+        try:
+            ipnetwork = ipaddress.ip_network("/".join([network, netmask]))
+            db.register(name, ipnetwork)
+            print("Registered section")
+        except ValueError as e:
+            print(e)
+        finally:
+            db.close()
