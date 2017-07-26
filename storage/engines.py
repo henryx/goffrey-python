@@ -5,6 +5,7 @@
 # Description   A simple IPAM
 # License       GPL version 2 (see GPL.txt for details)
 import sqlite3
+from contextlib import closing
 
 from storage import Database
 
@@ -19,7 +20,15 @@ class SQLite(Database):
             self.createschema()
 
     def checkschema(self):
-        return True
+        query = "SELECT count(*) FROM sqlite_master"
+        with closing(self._conn.cursor()) as cur:
+            cur.execute(query)
+            val = cur.fetchone()[0]
+
+        if val == 0:
+            return False
+        else:
+            return True
 
     def createschema(self):
         pass
