@@ -10,8 +10,6 @@ import argparse
 import configparser
 import sys
 
-import os.path
-
 __author__ = "Enrico Bianchi"
 __copyright__ = "Copyright 2017, Enrico Bianchi"
 __credits__ = ["Enrico Bianchi", ]
@@ -73,9 +71,10 @@ def main():
     else:
         cfgfile = args.cfg
 
-    if os.path.exists(args.cfg):
-        cfg = configparser.ConfigParser.read(args.cfg)
-    else:
+    cfg = configparser.ConfigParser()
+    try:
+        cfg.read(cfgfile)
+    except:
         print("Cannot open the configuration file {}: not found".format(args.cfg))
         args.print_help()
         sys.exit(1)
