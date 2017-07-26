@@ -51,3 +51,8 @@ class SQLite(Database):
         with closing(self._conn.cursor()) as cur:
             for table in tables:
                 cur.execute(table)
+
+
+class MySQL(Database):
+    def __init__(self, cfg, autocommit=False):
+        super().__init__(cfg, autocommit)
