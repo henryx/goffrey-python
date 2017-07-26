@@ -22,8 +22,7 @@ class Operation:
     _cfg = None
 
     def __init__(self, cfg):
-        self._cfg = configparser.ConfigParser()
-        self._cfg.read(cfg)
+        self._cfg = cfg
 
     def start(self, name, network, netmask):
         raise NotImplementedError("Base method not implemented in this class")
