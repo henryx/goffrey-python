@@ -31,4 +31,18 @@ class SQLite(Database):
             return True
 
     def createschema(self):
-        pass
+        tables = [" ".join(["CREATE TABLE sections(",
+                            "section VARCHAR(30),",
+                            "network VARCHAR(15),",
+                            "netmask VARCHAR(15),",
+                            "PRIMARY KEY(section))"]),
+                  " ".join(["CREATE TABLE addresses(",
+                            "section VARCHAR(30),",
+                            "address VARCHAR(15),",
+                            "hostname VARCHAR(255),",
+                            "assigned TIMESTAMP)"])
+                  ]
+
+        with closing(self._conn.cursor()) as cur:
+            for table in tables:
+                cur.execute(table)
