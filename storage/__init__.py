@@ -16,6 +16,7 @@ __version__ = "0.0.0"
 
 __all__ = ["engines"]
 
+
 class Database(object):
     _conn = None
 
@@ -36,3 +37,6 @@ class Database(object):
                 self._conn.close()
         except:
             pass
+
+    def register(self, name, network, netmask):
+        pass
