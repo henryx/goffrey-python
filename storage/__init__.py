@@ -20,6 +20,7 @@ __all__ = ["engines"]
 class Database(object):
     _conn = None
     _autocommit = None
+    _paramstyle = None
 
     @property
     def autocommit(self):
@@ -28,6 +29,13 @@ class Database(object):
     @property
     def conn(self):
         return self._conn
+
+    @property
+    def paramstyle(self):
+        if self._paramstyle == "qmark":
+            return "?"
+        elif self._paramstyle == "format":
+            return "%s"
 
     def __init__(self, cfg, autocommit=False):
         self._autocommit = autocommit

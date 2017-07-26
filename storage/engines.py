@@ -19,6 +19,8 @@ class SQLite(Database):
         else:
             self._conn = sqlite3.connect(cfg["sqlite"]["location"])
 
+        self._paramstyle = sqlite3.paramstyle
+
         if not self.checkschema():
             self.createschema()
 
