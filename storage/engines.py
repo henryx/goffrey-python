@@ -51,7 +51,10 @@ class SQLite(Database):
                 cur.execute(table)
 
     def register(self, name, ipnetwork):
-        query = "INSERT INTO sections(section, network, netmask) VALUES (?, ?, ?)"
+        query = ("INSERT INTO sections(section, network, netmask) VALUES (?, ?, ?)",
+                 "INSERT INTO addresses(section, address) VALUES(?, ?)")
 
         with closing(self.conn.cursor()) as cur:
-            cur.execute(query, (name, str(ipnetwork.network_address), str(ipnetwork.netmask)))
+            cur.execute(query[0], (name, str(ipnetwork.network_address), str(ipnetwork.netmask)))
+            for ip in ipnetwork.hosts():
+                cur.execute(query[1], (name, str(ip)))
