@@ -4,7 +4,8 @@
 # Project       Goffrey
 # Description   A simple IPAM
 # License       GPL version 2 (see GPL.txt for details)
-import configparser
+import storage.engines
+from operations import Operation
 
 _author__ = "Enrico Bianchi"
 __copyright__ = "Copyright 2017, Enrico Bianchi"
@@ -15,15 +16,14 @@ __email__ = "enrico.bianchi@gmail.com"
 __status__ = "Development"
 __version__ = "0.0.0"
 
-__all__ = ["register"]
-
-
-class Operation:
-    _cfg = None
-
+class Register(Operation):
     def __init__(self, cfg):
-        self._cfg = configparser.ConfigParser()
-        self._cfg.read(cfg)
+        super().__init__(cfg)
 
     def start(self, name, network, netmask):
-        raise NotImplementedError("Base method not implemented in this class")
+        if self._cfg["general"]["database"] == "sqlite":
+            db = storage.engines.SQLite(self._cfg)
+        else:
+            raise ValueError("Database engine not supported: {}".format(self._cfg["general"]["database"]))
+
+        print("Registered section")
