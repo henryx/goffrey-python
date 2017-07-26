@@ -11,10 +11,13 @@ from storage import Database
 
 
 class SQLite(Database):
-    def __init__(self, cfg):
-        super().__init__(cfg)
+    def __init__(self, cfg, autocommit=False):
+        super().__init__(cfg, autocommit)
 
-        self._conn = sqlite3.connect(cfg["sqlite"]["location"])
+        if autocommit:
+            self._conn = sqlite3.connect(cfg["sqlite"]["location"], isolation_level=None)
+        else:
+            self._conn = sqlite3.connect(cfg["sqlite"]["location"])
 
         if not self.checkschema():
             self.createschema()

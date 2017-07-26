@@ -19,13 +19,18 @@ __all__ = ["engines"]
 
 class Database(object):
     _conn = None
+    _autocommit = None
+
+    @property
+    def autocommit(self):
+        return self._autocommit
 
     @property
     def conn(self):
         return self._conn
 
-    def __init__(self, cfg):
-        pass
+    def __init__(self, cfg, autocommit=False):
+        self._autocommit = autocommit
 
     def __enter__(self):
         return self
@@ -33,7 +38,7 @@ class Database(object):
     def __exit__(self, exc_type, exc_val, exc_tb):
         try:
             if self._conn:
-                self._conn.commit()
+                self._conn.commit() if not self._autocommit else None
                 self._conn.close()
         except:
             pass
