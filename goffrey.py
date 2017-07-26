@@ -8,8 +8,9 @@
 
 import argparse
 import configparser
-
 import sys
+
+import os.path
 
 __author__ = "Enrico Bianchi"
 __copyright__ = "Copyright 2017, Enrico Bianchi"
@@ -68,9 +69,16 @@ def main():
 
     if not args.cfg:
         # TODO: check correct location if you are on Windows or on Linux
-        cfg = configparser.ConfigParser.read("goffrey.cfg")
+        cfgfile = "goffrey.cfg"
     else:
+        cfgfile = args.cfg
+
+    if os.path.exists(args.cfg):
         cfg = configparser.ConfigParser.read(args.cfg)
+    else:
+        print("Cannot open the configuration file {}: not found".format(args.cfg))
+        args.print_help()
+        sys.exit(1)
 
     if args.command == "register":
         pass
