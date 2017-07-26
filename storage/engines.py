@@ -14,3 +14,12 @@ class SQLite(Database):
         super().__init__(cfg)
 
         self._conn = sqlite3.connect(cfg["sqlite"]["location"])
+
+        if not self.checkschema():
+            self.createschema()
+
+    def checkschema(self):
+        return True
+
+    def createschema(self):
+        pass
