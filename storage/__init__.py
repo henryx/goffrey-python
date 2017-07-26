@@ -14,7 +14,7 @@ __email__ = "enrico.bianchi@gmail.com"
 __status__ = "Development"
 __version__ = "0.0.0"
 
-__all__ = []
+__all__ = ["engines"]
 
 class Database(object):
     _conn = None
