@@ -56,3 +56,12 @@ class SQLite(Database):
 class MySQL(Database):
     def __init__(self, cfg, autocommit=False):
         super().__init__(cfg, autocommit)
+
+        if not self.checkschema():
+            self.createschema()
+
+    def checkschema(self):
+        return True
+
+    def createschema(self):
+        pass
