@@ -7,6 +7,8 @@
 import sqlite3
 from contextlib import closing
 
+import mysql.connector
+
 from storage import Database
 
 
@@ -56,6 +58,17 @@ class SQLite(Database):
 class MySQL(Database):
     def __init__(self, cfg, autocommit=False):
         super().__init__(cfg, autocommit)
+
+        dsn = {
+            "user": cfg["mysql"]["user"],
+            "password": cfg["mysql"]["password"],
+            "database": cfg["mysql"]["database"],
+            "host": cfg["mysql"]["host"],
+            "port": cfg["mysql"]["port"],
+            "autocommit": autocommit
+        }
+
+        self._conn = mysql.connector.connect(**dsn)
 
         if not self.checkschema():
             self.createschema()
