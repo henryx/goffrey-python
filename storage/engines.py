@@ -71,11 +71,20 @@ class MySQL(Database):
         self._conn = mysql.connector.connect(**dsn)
         self._paramstyle = mysql.connector.paramstyle
 
-        if not self.checkschema():
+        if not self.checkschema(cfg["mysql"]["database"]):
             self.createschema()
 
-    def checkschema(self):
-        return True
+    def checkschema(self, database):
+        query = "SELECT Count(*)  FROM information_schema.tables WHERE table_schema = {0}".format(self.paramstyle)
+
+        with closing(self._conn.cursor()) as cur:
+            cur.execute(query, (database,))
+            val = cur.fetchone()[0]
+
+        if val == 0:
+            return False
+        else:
+            return True
 
     def createschema(self):
         pass
