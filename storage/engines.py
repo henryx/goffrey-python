@@ -69,6 +69,7 @@ class MySQL(Database):
         }
 
         self._conn = mysql.connector.connect(**dsn)
+        self._paramstyle = mysql.connector.paramstyle
 
         if not self.checkschema():
             self.createschema()
